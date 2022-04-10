@@ -77,21 +77,41 @@ class People {
     return (this.age = age);
   }
 }
-
 class Seller extends People {
   constructor(name: string, age: number, gender: string, isNice: boolean) {
     super(name, age, gender, isNice);
   }
 }
 
-class Client extends People {
-  constructor(name: string, age: number, gender: string, isNice: boolean) {
+class Interest extends People {
+  product: string;
+  time: Date;
+  constructor(
+    name: string,
+    age: number,
+    gender: string,
+    isNice: boolean,
+    product: string,
+    time: Date
+  ) {
     super(name, age, gender, isNice);
+    this.product = product;
+    this.time = time;
   }
 }
-class Interest extends People {
-  constructor(name: string, age: number, gender: string, isNice: boolean) {
-    super(name, age, gender, isNice);
+class Client extends Interest {
+  isPurchase: boolean;
+  constructor(
+    name: string,
+    age: number,
+    gender: string,
+    isNice: boolean,
+    isPurchase: boolean,
+    product: string,
+    time: Date
+  ) {
+    super(name, age, gender, isNice, product, time);
+    this.isPurchase = isPurchase;
   }
 }
 class Supplier extends People {
@@ -105,5 +125,13 @@ let iphone = new Phone(1, "iphone8", 3000, "Ivory");
 store.addProduct(iphone);
 
 //Instance of people
-let client = new Client("yarin", 21, "female", true);
+let client = new Client(
+  "yarin",
+  21,
+  "female",
+  true,
+  true,
+  "iphone",
+  new Date(13 / 3 / 2022)
+);
 store.addPeople(client);
